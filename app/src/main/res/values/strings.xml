@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">PalindromeApp</string>
+    <string name="name">Name</string>
+    <string name="check">CHECK</string>
+    <string name="next">NEXT</string>
+    <string name="palindrome">Palindrome</string>
+    <string name="sample_name">John Doe</string>
+    <string name="welcome">Welcome</string>
+    <string name="choose_a_user">Choose a User</string>
+    <string name="selected_user_name">Selected User Name</string>
+    <string name="image_profile_of_user">Image profile of user</string>
+    <string name="sample_user_name">FirstName LastName</string>
+    <string name="email_sample">EMAIL@EMAIL.COM\n</string>
 </resources>

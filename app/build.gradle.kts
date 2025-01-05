@@ -45,4 +45,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Rounded Imageview
+    implementation("com.makeramen:roundedimageview:2.3.0")
+
+    // Circle ImageView
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }
