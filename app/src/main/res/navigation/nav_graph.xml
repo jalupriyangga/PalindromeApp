@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstScreenFragment">
+    <fragment
+        android:id="@+id/firstScreenFragment"
+        android:name="com.jalupriyangga.palindromeapp.ui.FirstScreenFragment"
+        android:label="FirstScreenFragment"
+        tools:layout="@layout/first_screen">
+        <action
+            android:id="@+id/action_firstScreenFragment_to_secondScreenFragment2"
+            app:destination="@id/secondScreenFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondScreenFragment2"
+        android:name="com.jalupriyangga.palindromeapp.ui.SecondScreenFragment"
+        android:label="SecondScreenFragment"
+        tools:layout="@layout/second_screen">
+        <action
+            android:id="@+id/action_secondScreenFragment2_to_thirdScreenFragment"
+            app:destination="@id/thirdScreenFragment" />
+        <action
+            android:id="@+id/action_secondScreenFragment2_to_firstScreenFragment"
+            app:destination="@id/firstScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdScreenFragment"
+        android:name="com.jalupriyangga.palindromeapp.ui.ThirdScreenFragment"
+        android:label="ThirdScreenFragment"
+        tools:layout="@layout/third_screen">
+        <action
+            android:id="@+id/action_thirdScreenFragment_to_secondScreenFragment2"
+            app:destination="@id/secondScreenFragment2" />
+    </fragment>
+</navigation>

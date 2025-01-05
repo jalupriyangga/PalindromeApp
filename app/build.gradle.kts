@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.jalupriyangga.palindromeapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.jalupriyangga.palindromeapp"
@@ -45,6 +45,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Navigation
+    val nav_version = "2.8.5"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     //Rounded Imageview
     implementation("com.makeramen:roundedimageview:2.3.0")
