@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/firstScreenFragment">
+
     <fragment
         android:id="@+id/firstScreenFragment"
         android:name="com.jalupriyangga.palindromeapp.ui.FirstScreenFragment"
@@ -11,8 +12,13 @@
         tools:layout="@layout/first_screen">
         <action
             android:id="@+id/action_firstScreenFragment_to_secondScreenFragment2"
-            app:destination="@id/secondScreenFragment2" />
+            app:destination="@id/secondScreenFragment2"
+            app:enterAnim="@anim/fragment_slide_enter_from_right"
+            app:exitAnim="@anim/fragment_slide_exit_to_left"
+            app:popEnterAnim="@anim/fragment_slide_enter_from_left"
+            app:popExitAnim="@anim/fragment_slide_exit_to_right" />
     </fragment>
+
     <fragment
         android:id="@+id/secondScreenFragment2"
         android:name="com.jalupriyangga.palindromeapp.ui.SecondScreenFragment"
@@ -20,11 +26,16 @@
         tools:layout="@layout/second_screen">
         <action
             android:id="@+id/action_secondScreenFragment2_to_thirdScreenFragment"
-            app:destination="@id/thirdScreenFragment" />
+            app:destination="@id/thirdScreenFragment"
+            app:enterAnim="@anim/fragment_slide_enter_from_right"
+            app:exitAnim="@anim/fragment_slide_exit_to_left"
+            app:popEnterAnim="@anim/fragment_slide_enter_from_right"
+            app:popExitAnim="@anim/fragment_slide_exit_to_left" />
         <action
             android:id="@+id/action_secondScreenFragment2_to_firstScreenFragment"
             app:destination="@id/firstScreenFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/thirdScreenFragment"
         android:name="com.jalupriyangga.palindromeapp.ui.ThirdScreenFragment"
@@ -32,6 +43,10 @@
         tools:layout="@layout/third_screen">
         <action
             android:id="@+id/action_thirdScreenFragment_to_secondScreenFragment2"
-            app:destination="@id/secondScreenFragment2" />
+            app:destination="@id/secondScreenFragment2"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_in" />
     </fragment>
 </navigation>

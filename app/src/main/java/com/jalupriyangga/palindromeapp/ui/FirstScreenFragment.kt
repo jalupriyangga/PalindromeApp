@@ -12,19 +12,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.jalupriyangga.palindromeapp.R
 import com.jalupriyangga.palindromeapp.databinding.FirstScreenBinding
+import com.jalupriyangga.palindromeapp.viewmodel.UserViewModel
 
-class FirstScreenFragment: BaseFragment() {
+class FirstScreenFragment : BaseFragment() {
 
-private var _binding: FirstScreenBinding? = null
-private val binding get() = _binding!!
+    private var _binding: FirstScreenBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var viewModel: UserViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+
         binding.nextButton.setOnClickListener {
-            val navDirection = FirstScreenFragmentDirections.actionFirstScreenFragmentToSecondScreenFragment2()
+            val name: String = binding.nameInput.text.toString()
+            viewModel.inputedName.value = name
+            val navDirection =
+                FirstScreenFragmentDirections.actionFirstScreenFragmentToSecondScreenFragment2()
             navController.navigate(navDirection)
+
         }
         binding.checkButton.setOnClickListener {
             val palindromeAlert = AlertDialog.Builder(requireContext())
@@ -34,7 +44,16 @@ private val binding get() = _binding!!
                     val input = binding.palindromeInput.text.toString()
                     val word = input!!.toLowerCase().replace("\\s".toRegex(), "")
                     val reversed = word.reversed()
-                    if (word == reversed) {
+                    if (word.isEmpty()) {
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Result")
+                            .setMessage("The word is empty")
+                            .setPositiveButton("Ok") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                        return@setPositiveButton
+                    } else if (word == reversed) {
                         AlertDialog.Builder(requireContext())
                             .setTitle("Result")
                             .setMessage("The word is a palindrome")
@@ -60,7 +79,12 @@ private val binding get() = _binding!!
             palindromeAlert.setOnShowListener {
                 val negativeButton = palindromeAlert.getButton(AlertDialog.BUTTON_NEGATIVE)
                 val spannableString = SpannableString(negativeButton.text)
-                spannableString.setSpan(ForegroundColorSpan(Color.RED), 0, spannableString.length, 0)
+                spannableString.setSpan(
+                    ForegroundColorSpan(Color.RED),
+                    0,
+                    spannableString.length,
+                    0
+                )
                 negativeButton.text = spannableString
             }
 

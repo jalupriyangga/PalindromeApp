@@ -49,20 +49,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameInput" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/checkButton"
         android:layout_width="310dp"
         android:layout_height="41dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/white_background"
         android:text="@string/check"
+        android:textColor="@color/white"
         android:textSize="14dp"
         app:backgroundTint="@color/blue"
+        app:rippleColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/palindromeInput" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
         android:layout_width="310dp"
         android:layout_height="41dp"
@@ -70,7 +72,9 @@
         android:background="@drawable/white_background"
         android:text="@string/next"
         android:textSize="14dp"
+        android:textColor="@color/white"
         app:backgroundTint="@color/blue"
+        app:rippleColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checkButton" />

@@ -9,4 +9,5 @@ class UserViewModel: ViewModel() {
     private val repository = UserRepository()
 
     val selectedUserName = MutableLiveData<String>()
+    val inputedName = MutableLiveData<String>()
 }

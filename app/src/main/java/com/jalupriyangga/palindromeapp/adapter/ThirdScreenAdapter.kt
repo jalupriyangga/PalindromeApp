@@ -38,8 +38,8 @@ class ThirdScreenAdapter(
         }
         Picasso.get()
             .load(user.avatar)
-            .placeholder(R.drawable.user_photo_sample)
-            .error(R.drawable.ic_photo)
+            .placeholder(R.drawable.ic_photo)
+            .error(R.drawable.ic_launcher_foreground)
             .into(holder.imgUser)
     }
 

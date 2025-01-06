@@ -3,5 +3,8 @@
     <style name="Base.Theme.PalindromeApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="colorPrimary">@color/blue</item>
     </style>
+    <style name="Theme.PalindromeApp" parent="Base.Theme.PalindromeApp" />
 </resources>

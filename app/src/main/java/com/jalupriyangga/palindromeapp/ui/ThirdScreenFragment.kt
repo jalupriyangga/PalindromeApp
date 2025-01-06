@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.snackbar.Snackbar
 import com.jalupriyangga.palindromeapp.ApiClient
 import com.jalupriyangga.palindromeapp.MainActivity
 import com.jalupriyangga.palindromeapp.UserResponse
@@ -52,7 +53,7 @@ class ThirdScreenFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
+//        binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
 
 //        remoteGetUser()
         remoteGetUser(false)
@@ -97,6 +98,7 @@ class ThirdScreenFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
         if (!isOnRefresh) binding.progressBar.visibility = View.VISIBLE
         val parameters = HashMap<String, String>()
         parameters["page"] = page.toString()
+        Snackbar.make(binding.root, "Wait! we're almost there!", Snackbar.ANIMATION_MODE_SLIDE).show()
         Handler().postDelayed({
             ApiClient.apiService.getUsers(parameters).enqueue(object : Callback<UserResponse> {
                 override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
@@ -115,7 +117,7 @@ class ThirdScreenFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
                     Log.d("ThirdScreenFragment", "onFailure: ${t.message}")
                 }
             })
-        }, 2000)
+        }, 3000)
 
     }
 

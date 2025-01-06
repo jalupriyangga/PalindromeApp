@@ -36,8 +36,12 @@ class SecondScreenFragment : BaseFragment() {
         // Observe the selectedUser Name LiveData
         viewModel.selectedUserName.observe(viewLifecycleOwner) { userName ->
             if (userName != null) {
-                binding.nameTextView.text = userName
                 binding.selectedUsernameTextView.text = userName
+            }
+        }
+        viewModel.inputedName.observe(viewLifecycleOwner) { inputedName ->
+            if (inputedName != null) {
+                binding.nameTextView.text = inputedName
             }
         }
     }
