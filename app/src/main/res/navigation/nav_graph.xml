@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/firstScreenFragment"
         android:name="com.jalupriyangga.palindromeapp.ui.FirstScreenFragment"
-        android:label="FirstScreenFragment"
+        android:label=""
         tools:layout="@layout/first_screen">
         <action
             android:id="@+id/action_firstScreenFragment_to_secondScreenFragment2"

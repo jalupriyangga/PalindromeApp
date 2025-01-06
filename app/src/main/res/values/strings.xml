@@ -11,4 +11,6 @@
     <string name="image_profile_of_user">Image profile of user</string>
     <string name="sample_user_name">FirstName LastName</string>
     <string name="email_sample">EMAIL@EMAIL.COM\n</string>
+    <string name="judul">Judul</string>
+    <string name="back">back</string>
 </resources>
