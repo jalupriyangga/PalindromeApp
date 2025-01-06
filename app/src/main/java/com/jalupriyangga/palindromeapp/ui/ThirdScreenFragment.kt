@@ -63,10 +63,10 @@ class ThirdScreenFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
                 val pastVisibleItem = layoutManager.findFirstVisibleItemPosition()
                 val total = adapter.itemCount
                 if (!isLoading && page < totalPage){
-                    if (visibleItemCount <= total){
-                        page++
-                        remoteGetUser(false)
-                    }
+//                    if (visibleItemCount + pastVisibleItem < total){
+//                        page++
+//                        remoteGetUser(false)
+//                    }
                 }
                 super.onScrolled(recyclerView, dx, dy)
             }
@@ -115,7 +115,7 @@ class ThirdScreenFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
                     Log.d("ThirdScreenFragment", "onFailure: ${t.message}")
                 }
             })
-        }, 3000)
+        }, 2000)
 
     }
 
@@ -137,7 +137,9 @@ class ThirdScreenFragment: BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
 
     override fun onRefresh() {
         adapter.clear()
-        page = 1
+        if (page<totalPage) page++ else page = 1
+        binding.progressBar.visibility = View.VISIBLE
+//        page = 1
         remoteGetUser(true)
     }
 }
