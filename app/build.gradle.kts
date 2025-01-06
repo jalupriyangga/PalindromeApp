@@ -70,4 +70,7 @@ dependencies {
 
     // Picasso Image Loader
     implementation("com.squareup.picasso:picasso:2.8")
+
+    //Swipe Refresh Layout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

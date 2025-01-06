@@ -2,8 +2,11 @@ package com.jalupriyangga.palindromeapp
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.QueryMap
 
 interface ApiService {
-    @GET("users?page=1&per_page=10")
-    fun getUsers(): Call<UserResponse>
+    @GET("users")
+    fun getUsers(
+        @QueryMap parameters: HashMap<String, String>
+    ): Call<UserResponse>
 }

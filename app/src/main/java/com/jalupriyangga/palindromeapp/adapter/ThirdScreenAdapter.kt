@@ -49,6 +49,11 @@ class ThirdScreenAdapter(
         notifyDataSetChanged()
     }
 
+    fun clear() {
+        datalist.clear() // Clear the data list
+        notifyDataSetChanged() // Notify the adapter that the data has changed
+    }
+
     inner class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgUser: ImageView = view.findViewById(R.id.userImageView)
         val tvNama: TextView = view.findViewById(R.id.userNameTextView)

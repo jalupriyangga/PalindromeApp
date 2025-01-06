@@ -1,11 +1,14 @@
 package com.jalupriyangga.palindromeapp
 
+import com.google.gson.annotations.SerializedName
+
 data class UserResponse(
     val `data`: List<Data> = listOf(),
     val page: Int = 0,
     val per_page: Int = 0,
     val support: Support = Support(),
     val total: Int = 0,
+    @SerializedName("total_pages")
     val total_pages: Int = 0
 ) {
     data class Data(
