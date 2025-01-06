@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.Placeholder
 import androidx.recyclerview.widget.RecyclerView
 import com.jalupriyangga.palindromeapp.R
 import com.jalupriyangga.palindromeapp.UserResponse
+import com.jalupriyangga.palindromeapp.viewmodel.UserViewModel
 import com.squareup.picasso.Picasso
 
 class ThirdScreenAdapter(
     private val context: Context,
-    private val datalist: ArrayList<UserResponse.Data> // Change this to UserResponse.Data
+    private val datalist: ArrayList<UserResponse.Data>,
+    private val viewModel: UserViewModel // Gunakan ViewModel dari Fragment
 ) : RecyclerView.Adapter<ThirdScreenAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -24,21 +25,21 @@ class ThirdScreenAdapter(
         return UserViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
-        return datalist.size
-    }
+    override fun getItemCount(): Int = datalist.size
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = datalist[position]
         holder.tvNama.text = "${user.first_name} ${user.last_name}"
         holder.tvEmail.text = user.email
         holder.rlUser.setOnClickListener {
+            // Perbarui ViewModel dengan nama user
+            viewModel.selectedUserName.value = "${user.first_name} ${user.last_name}"
             Toast.makeText(context, "User ${user.first_name} ${user.last_name} clicked", Toast.LENGTH_SHORT).show()
         }
         Picasso.get()
-            .load(user.avatar) // Assuming user.avatar contains the image URL
-            .placeholder(R.drawable.user_photo_sample) // Optional: Placeholder image while loading
-            .error(R.drawable.ic_photo) // Optional: Error image if loading fails
+            .load(user.avatar)
+            .placeholder(R.drawable.user_photo_sample)
+            .error(R.drawable.ic_photo)
             .into(holder.imgUser)
     }
 
@@ -48,10 +49,10 @@ class ThirdScreenAdapter(
         notifyDataSetChanged()
     }
 
-    inner class UserViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val imgUser : ImageView = view.findViewById(R.id.userImageView)
+    inner class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val imgUser: ImageView = view.findViewById(R.id.userImageView)
         val tvNama: TextView = view.findViewById(R.id.userNameTextView)
         val tvEmail: TextView = view.findViewById(R.id.emailTextView)
-        val rlUser : View = view.findViewById(R.id.itemUser ) // Change to the correct type
+        val rlUser: View = view.findViewById(R.id.itemUser)
     }
 }

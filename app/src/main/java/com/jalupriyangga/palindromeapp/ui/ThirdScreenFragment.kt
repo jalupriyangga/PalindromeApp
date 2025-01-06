@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.jalupriyangga.palindromeapp.ApiClient
@@ -15,6 +17,8 @@ import com.jalupriyangga.palindromeapp.UserResponse
 import com.jalupriyangga.palindromeapp.adapter.ThirdScreenAdapter
 import com.jalupriyangga.palindromeapp.databinding.SecondScreenBinding
 import com.jalupriyangga.palindromeapp.databinding.ThirdScreenBinding
+import com.jalupriyangga.palindromeapp.viewmodel.UserViewModel
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,9 +29,16 @@ class ThirdScreenFragment: BaseFragment() {
     private var _binding: ThirdScreenBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: UserViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ThirdScreenAdapter(navController.context, arrayListOf())
+
+        // Gunakan ViewModel yang sama dengan Activity
+        viewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+
+        // Pass ViewModel ke Adapter
+        adapter = ThirdScreenAdapter(requireContext(), arrayListOf(), viewModel)
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.setHasFixedSize(true)
@@ -50,22 +61,18 @@ class ThirdScreenFragment: BaseFragment() {
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 
-    fun remoteGetUser () {
+    private fun remoteGetUser() {
         ApiClient.apiService.getUsers().enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
-                    val userResponse = response.body()
-                    Log.d("ThirdScreenFragment", "User  response: $userResponse") // Log the response
-                    userResponse?.data?.let { users ->
-                        setDataToAdapter(users) // Pass the list of UserResponse.Data
+                    response.body()?.data?.let { users ->
+                        adapter.setData(users) // Pass the data to the adapter
                     }
-                } else {
-                    Log.d("ThirdScreenFragment", "Response not successful: ${response.code()}")
                 }
             }
 
@@ -73,9 +80,5 @@ class ThirdScreenFragment: BaseFragment() {
                 Log.d("ThirdScreenFragment", "onFailure: ${t.message}")
             }
         })
-    }
-
-    fun setDataToAdapter(data: List<UserResponse.Data>) {
-        adapter.setData(data) // Update the adapter with the list of UserResponse.Data
     }
 }
